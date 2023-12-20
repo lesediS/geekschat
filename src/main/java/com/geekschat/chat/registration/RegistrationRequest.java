@@ -1,19 +1,17 @@
 package com.geekschat.chat.registration;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @ToString
 public class RegistrationRequest {
-    
-    private final String firstName;
-    private final String lastName;
-    private final String username;
-    private final String email;
-    private final String password;
+
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String email;
+    private String password;
 }

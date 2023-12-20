@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ConfirmTokenService {
+    
     private final ConfirmTokenRepository confirmTokenRepository;
 
     public void saveConfirmToken(ConfirmToken token){
