@@ -1,5 +1,6 @@
 package com.geekschat.chat.registration;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,4 +27,10 @@ public class RegistrationController {
     public String confirm(@RequestParam("token") String token) {
         return regService.tokenConfirmation(token);
     }
+
+    /*@GetMapping("/registration/success")
+    public String regSuccess(Model model){
+        model.addAttribute("message", "Successfully confirmed");
+        //return 
+    }*/
 }
