@@ -1,4 +1,4 @@
-package com.geekschat.chat.appuser;
+package com.geekschat.chat.geeksuser;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class AppUserService implements UserDetailsService{
+public class UserService implements UserDetailsService{
 
     private final UserRepository userRepository;
     private final String USER_NOT_FOUND_MSG = "No such user %s found";
@@ -29,7 +29,7 @@ public class AppUserService implements UserDetailsService{
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String userSignUp(AppUser user){
+    public String userSignUp(User user){
 
         boolean userEmailExists = userRepository.findByEmail(user.getEmail()).isPresent();
         if(userEmailExists){

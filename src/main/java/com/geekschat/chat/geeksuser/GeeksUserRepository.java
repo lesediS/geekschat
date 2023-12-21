@@ -1,4 +1,4 @@
-package com.geekschat.chat.appuser;
+package com.geekschat.chat.geeksuser;
 
 import java.util.Optional;
 
@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository extends JpaRepository<AppUser, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<AppUser> findByEmail(String email);
+    Optional<User> findByEmail(String email);
     
     @Transactional
     @Modifying
-    @Query("UPDATE AppUser a " +
+    @Query("UPDATE User a " +
             "SET a.enabled = TRUE WHERE a.email = ?1")
     int enableAppUser(String email);
 }

@@ -1,4 +1,4 @@
-package com.geekschat.chat.appuser;
+package com.geekschat.chat.geeksuser;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,15 +25,15 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class AppUser implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "id_sequence", sequenceName = "id_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_sequence")
-    private Long userID;
+    private Long userid;
 
     @Enumerated(EnumType.STRING)
-    private AppUserRole userRole;
+    private UserRole userRole;
     
     private String firstName;
     private String lastName;
@@ -43,8 +43,8 @@ public class AppUser implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false; //only true once user confirms their email
 
-    public AppUser(String firstName, String lastName, String username, String email,
-            String password, AppUserRole userRole) {
+    public User(String firstName, String lastName, String username, String email,
+                String password, UserRole userRole) {
         
         this.firstName = firstName;
         this.lastName = lastName;
