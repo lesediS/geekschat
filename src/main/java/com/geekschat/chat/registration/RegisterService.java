@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.geekschat.chat.appuser.AppUser;
-import com.geekschat.chat.appuser.AppUserRole;
-import com.geekschat.chat.appuser.AppUserService;
+import com.geekschat.chat.geeksuser.GeeksUser;
+import com.geekschat.chat.geeksuser.GeeksUserRole;
+import com.geekschat.chat.geeksuser.GeeksUserService;
 import com.geekschat.chat.email.EmailSender;
 import com.geekschat.chat.registration.token.ConfirmToken;
 import com.geekschat.chat.registration.token.ConfirmTokenService;
@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RegisterService {
 
-    private AppUserService userService;
+    private GeeksUserService geeksUserService;
     private ConfirmTokenService confirmTokenService;
     private EmailValidator emailValid;
     private EmailSender emailSender;
@@ -32,8 +32,8 @@ public class RegisterService {
             throw new IllegalStateException("Invalid email");
         }
         
-        String token = userService.userSignUp(new AppUser(request.getFirstName(), request.getLastName(),
-            request.getUsername(), request.getEmail(), request.getPassword(), AppUserRole.USER));
+        String token = geeksUserService.userSignUp(new GeeksUser(request.getFirstName(), request.getLastName(),
+            request.getUsername(), request.getEmail(), request.getPassword(), GeeksUserRole.USER));
 
             String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
 
@@ -57,7 +57,7 @@ public class RegisterService {
         }
 
         confirmTokenService.setConfirmedAt(token);
-        userService.enableUser(confirmToken.getAppUser().getEmail());
+        geeksUserService.enableUser(confirmToken.getGeeksUser().getEmail());
 
         return "Email confirmed";
     }

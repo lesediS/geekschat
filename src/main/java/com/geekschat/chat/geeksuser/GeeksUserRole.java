@@ -1,5 +1,5 @@
 package com.geekschat.chat.geeksuser;
 
-public enum UserRole {
+public enum GeeksUserRole {
     USER, ADMIN
 }

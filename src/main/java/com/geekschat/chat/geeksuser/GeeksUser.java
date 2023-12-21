@@ -25,7 +25,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class User implements UserDetails {
+public class GeeksUser implements UserDetails {
 
     @Id
     @SequenceGenerator(name = "id_sequence", sequenceName = "id_sequence", allocationSize = 1)
@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private Long userid;
 
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private GeeksUserRole geeksUserRole;
     
     private String firstName;
     private String lastName;
@@ -43,20 +43,20 @@ public class User implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = false; //only true once user confirms their email
 
-    public User(String firstName, String lastName, String username, String email,
-                String password, UserRole userRole) {
+    public GeeksUser(String firstName, String lastName, String username, String email,
+                    String password, GeeksUserRole geeksUserRole) {
         
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
+        this.geeksUserRole = geeksUserRole;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(geeksUserRole.name());
         return Collections.singletonList(authority);
     }
 

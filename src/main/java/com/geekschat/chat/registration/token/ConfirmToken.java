@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.geekschat.chat.appuser.AppUser;
+import com.geekschat.chat.geeksuser.GeeksUser;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class ConfirmToken {
     @Id
     @SequenceGenerator(name = "token_confirm_sequence", sequenceName = "token_confirm_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "token_confirm_sequence")
-    private Long id; //token id
+    private Long userId; //token id
 
     @Column(nullable = false)
     private String token; //the token
@@ -40,13 +40,13 @@ public class ConfirmToken {
     private LocalDateTime timeConfirmed; //time link is clicked to confirm email using token
 
     @ManyToOne //user can have many tokens
-    @JoinColumn(nullable = false, name = "app_user_id")
-    private AppUser appUser;
+    @JoinColumn(nullable = false, name = "geeks_user_id")
+    private GeeksUser geeksUser;
 
-    public ConfirmToken(String token, LocalDateTime timeCreated, LocalDateTime timeExpire, AppUser appUser) {
+    public ConfirmToken(String token, LocalDateTime timeCreated, LocalDateTime timeExpire, GeeksUser geeksUser) {
         this.token = token;
         this.timeCreated = timeCreated;
         this.timeExpire = timeExpire;
-        this.appUser = appUser;
+        this.geeksUser = geeksUser;
     }
 }
